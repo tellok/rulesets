@@ -1,12 +1,88 @@
-# SOURCE: https://grok.com/; https://docs.x.ai/; https://huggingface.co/docs
 # NAME: AI
-# DESC: Grok/xAI and Hugging Face Hub, API, and Spaces services
+# DESC: 常见 AI 服务的网页、API、登录专用域名与 Codex/Dot 云电脑控制连接
+# UPDATED: 2026-10-19
+# 使用 DOMAIN / DOMAIN-SUFFIX；不匹配整个 Google、GitHub、Cloudflare 或 Azure。
+# 本表是域名分流，不替代 Codex/Dot 的真实 IP UDP/WebRTC 接管。
 
-# Grok consumer application and xAI platform
+# OpenAI / ChatGPT / Codex / Dotty
+# SOURCE: https://learn.chatgpt.com/docs/auth
+# SOURCE: https://learn.chatgpt.com/docs/dots/computers-and-apps
+# 现场确认：ws.chatgpt.com、codex-cloud-backend.chatgpt.com、
+# codex-cloud-environments.chatgpt.com 均由 chatgpt.com 后缀覆盖。
+DOMAIN-SUFFIX,openai.com
+DOMAIN-SUFFIX,chatgpt.com
+DOMAIN-SUFFIX,oaistatic.com
+DOMAIN-SUFFIX,oaiusercontent.com
+DOMAIN-SUFFIX,chatgpt.livekit.cloud
+DOMAIN-SUFFIX,host.livekit.cloud
+DOMAIN-SUFFIX,turn.livekit.cloud
+# 现有 OpenAI 规则中使用的精确 CDN / 人机验证端点，避免匹配共享平台根域。
+DOMAIN,chat.openai.com.cdn.cloudflare.net
+DOMAIN,openai-api.arkoselabs.com
+DOMAIN,openaicomproductionae4b.blob.core.windows.net
+DOMAIN,production-openaicom-storage.azureedge.net
+
+# Claude / Anthropic（含 Claude Code 登录、API、MCP 和 Claude in Chrome bridge）
+# SOURCE: https://code.claude.com/docs/en/network-config#network-access-requirements
+DOMAIN-SUFFIX,anthropic.com
+DOMAIN-SUFFIX,claude.ai
+DOMAIN-SUFFIX,claude.com
+DOMAIN-SUFFIX,claudeusercontent.com
+DOMAIN-SUFFIX,clau.de
+DOMAIN-SUFFIX,claudemcpclient.com
+DOMAIN,anthropic.auth0.com
+DOMAIN,anthropic.com.cdn.cloudflare.net
+DOMAIN,servd-anthropic-website.b-cdn.net
+
+# Gemini / AI Studio / NotebookLM / Gemini Code Assist
+# SOURCE: https://ai.google.dev/api/all-methods
+# SOURCE: https://cloud.google.com/gemini/docs/codeassist/set-up-gemini
+# 精确匹配共享 Google 服务的 AI 主机，不接管全部 google.com/googleapis.com。
+DOMAIN,gemini.google.com
+DOMAIN,aistudio.google.com
+DOMAIN,ai.google.dev
+DOMAIN,notebooklm.google.com
+DOMAIN,notebook.google
+DOMAIN,notebook.google.com
+DOMAIN,labs.google
+DOMAIN,generativelanguage.googleapis.com
+DOMAIN,cloudcode-pa.googleapis.com
+DOMAIN,cloudaicompanion.googleapis.com
+DOMAIN,oauth2.googleapis.com
+DOMAIN,serviceusage.googleapis.com
+DOMAIN,cloudresourcemanager.googleapis.com
+DOMAIN,firebaselogging-pa.googleapis.com
+DOMAIN,feedback-pa.googleapis.com
+DOMAIN,apihub.googleapis.com
+
+# GitHub Copilot / Microsoft Copilot
+# SOURCE: https://docs.github.com/en/copilot/reference/copilot-allowlist-reference
+# GitHub 通用登录/API 继续沿用 GitHub 分流，不把整个 GitHub 归到 AI。
+DOMAIN-SUFFIX,githubcopilot.com
+DOMAIN-SUFFIX,copilot.microsoft.com
+DOMAIN,copilot-proxy.githubusercontent.com
+DOMAIN,copilot-telemetry.githubusercontent.com
+DOMAIN,origin-tracker.githubusercontent.com
+DOMAIN,default.exp-tas.com
+
+# Cursor（含 API、认证、下载与托管电脑）
+# SOURCE: https://cursor.com/help/troubleshooting/network
+DOMAIN-SUFFIX,cursor.com
+DOMAIN-SUFFIX,cursor.sh
+DOMAIN-SUFFIX,cursorapi.com
+DOMAIN-SUFFIX,cursor-cdn.com
+DOMAIN-SUFFIX,cursorvm.com
+
+# Perplexity / OpenRouter
+# SOURCE: https://docs.perplexity.ai/docs/getting-started/quickstart
+# SOURCE: https://openrouter.ai/docs/quickstart
+DOMAIN-SUFFIX,perplexity.ai
+DOMAIN-SUFFIX,openrouter.ai
+
+# 保留原有 Grok / xAI 与 Hugging Face Hub、API、CDN、Spaces
+# SOURCE: https://docs.x.ai/; https://huggingface.co/docs
 DOMAIN-SUFFIX,grok.com
 DOMAIN-SUFFIX,x.ai
-
-# Hugging Face Hub, short URLs/CDN endpoints, and Spaces applications
 DOMAIN-SUFFIX,huggingface.co
 DOMAIN-SUFFIX,hf.co
 DOMAIN-SUFFIX,hf.space
