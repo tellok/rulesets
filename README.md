@@ -16,7 +16,7 @@ Codex/Dotty 的 `ws.chatgpt.com`、`codex-cloud-backend.chatgpt.com`、`codex-cl
 
 ## sing-box 自动生成与订阅
 
-根目录的 `.list` 为唯一维护源。GitHub Actions 在 main 的列表、生成脚本、测试或工作流变更后，运行测试并生成 `sing-box/<原文件名>.json`，只有产物变化才由机器人提交到 main。Pull Request 只验证，不写仓库；也可以在 Actions 中手动运行。生成提交不匹配触发路径，且 GITHUB_TOKEN 推送不会递归触发工作流。不要手工编辑生成 JSON。
+根目录的分流 `.list` 为唯一分流维护源；`rewrites/` 的 URL 重写单独生成，不送入 sing-box 分流转换器。GitHub Actions 在 main 的列表、生成脚本、测试或工作流变更后，运行测试并生成 `sing-box/<原文件名>.json`，只有产物变化才由机器人提交到 main。Pull Request 只验证，不写仓库；也可以在 Actions 中手动运行。生成提交不匹配触发路径，且 GITHUB_TOKEN 推送不会递归触发工作流。不要手工编辑生成 JSON。
 
 本地生成及验证：
 
@@ -59,3 +59,26 @@ sing-box 的 `route.rule_set` 示例：
 搭配 `Stable_Exit` 手动选择组，候选只放具体代理节点，不能把 SG/Final/Proxies 等会自动换节点的组放进去。节点失效时保留选择，由用户手动换节点；这避免自动测速/故障切换改变出口，但不保证服务商不会调整同一节点的出口IP，也不保证Cookie永不过期。列表内网站共享一个固定节点；若将来需要每站不同出口，应拆为多个策略组。
 
 Surge：`RULE-SET,https://raw.githubusercontent.com/tellok/rulesets/main/stable_exit.list,Stable_Exit,update-interval=86400`。sing-box使用对应JSON远程规则集并路由到Stable_Exit，update_interval为1d。放在普通业务/CN/兜底规则之前；客户端的DNS、必要私网/iOA保护规则按原配置保留。切换或首次加载可能改变这两个站的出口，宜在选择好节点后重新登录。
+
+## URL 重定向：cinder_f271
+
+`rewrites/cinder_f271.redirector.json` 是维护源，包含用户提供的51条Redirector规则及额外3条sis001规范化规则；不发布原始testUrl浏览记录。`scripts/generate_rewrites.py`生成 `rewrites/cinder_f271.list`（Surge detached profile的URL Rewrite段）与 `rewrites/cinder_f271.sgmodule`（附MITM hostname的独立模块）。名称随机生成，无业务含义。
+
+.list的CDN地址为 `https://cdn.jsdelivr.net/gh/tellok/rulesets@main/rewrites/cinder_f271.list`。不能把它放入`RULE-SET`；Surge配置应加入：
+
+```ini
+[URL Rewrite]
+#!include https://cdn.jsdelivr.net/gh/tellok/rulesets@main/rewrites/cinder_f271.list
+```
+
+片段以managed profile声明interval=86400；客户端运行时跟随远程更新，休眠/离线及CDN缓存不保证准点。源配置已有URL Rewrite行时，混合include要求Surge iOS5.22+/Mac6.9+；目前两份adapter产物该段只包含一个include。也可以安装.sgmodule，独立启停，不应与主配置同时重复启用。
+
+HTTPS需在Surge生成/安装并信任CA、打开MITM主开关。只添加45个源主机及明确的子域通配，不启用全站MITM、不更改证书或服务器证书验证。增加全新源域名后，还需同步adapter的mitm_hosts并重新转换/加载，或使用模块更新主机集合。证书与私钥不放进公开仓库。
+
+原扩展规则采用正则（忽略大小写）、编号捕获及单条exclude。译码不改捕获编号，exclude转为不捕获组的负向前瞻，消费URL未匹配后缀以保持原扩展“用目标模板替换整个URL”的语义。规则按原顺序，其后追加3条；最后一条排除已经是thread-…-1-1.html的URL，避免302自循环。源正则中原来未转义的点号等行为保留，不额外推测修改。每次请求执行一次302，链式规则可能需要多次请求；扩展原本会在设备内计算整条链。
+
+URL Pattern、动态流水线/模板和未支持的复杂正则必须显式另行转换，生成器遇到它们会报错；不悄悄降级为域名分流。当前54条全部为受支持的正则模板。sing-box/OpenWrt没有HTTP URL Rewrite/MITM能力，不能生成等效rule-set JSON；浏览器可导入同源.redirector.json，或另行配置能解密HTTPS的重写代理。
+
+验证：`python3 -m unittest discover -p 'test_*.py'`、`python3 scripts/generate_rewrites.py`。Actions同样执行生成并发布；rewrites文件变更触发工作流。
+
+依据：[Redirector文档与源码](https://github.com/rxliuli/redirector)、[Surge URL Rewrite](https://manual.nssurge.com/http/url-rewrite.html)、[Surge detached profile](https://manual.nssurge.com/profile/format.html)、[Surge MITM](https://manual.nssurge.com/http/mitm.html)、[sing-box rule actions](https://sing-box.sagernet.org/configuration/route/rule_action/)。

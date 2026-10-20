@@ -1,0 +1,273 @@
+[
+  {
+    "from": "^https://im.sis.la/bbs3/redirect.php\\?(.*)",
+    "mode": "regex",
+    "to": "https://sis001.com/bbs/redirect.php?$1"
+  },
+  {
+    "from": "^https://mphw.zmmgu.com/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://xyof.zmmgu.com/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://tgwc.ur25ed.com/read.php\\?tid=(.*)",
+    "mode": "regex",
+    "to": "https://hjd2048.com/2048/read.php?tid=$1"
+  },
+  {
+    "from": "^https://e.sis001.us/bbs2/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sis001.com/bbs/thread-$1"
+  },
+  {
+    "from": "^https://sifangclub.com/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://dccy.44zacha-a.shop/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://184f.64cocker-d.shop/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "exclude": "^https://www.sis001.com/bbs/thread-(.*)-1-1.html",
+    "from": "^https://www.sis001.com/bbs/thread-(.*)-\\d-\\d.html",
+    "mode": "regex",
+    "to": "https://www.sis001.com/bbs/thread-$1-1-1.html"
+  },
+  {
+    "from": "^https://sis001.com/forum/thread-(.*)",
+    "mode": "regex",
+    "to": "https://sis001.com/bbs/thread-$1"
+  },
+  {
+    "from": "^https://sis001.com/bbs/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sis001.com/bbs/thread-$1"
+  },
+  {
+    "from": "^https://y34h.26owen-a.shop/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://nq6b.news-9y.com/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://wv.sis.la/forum/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sis001.com/bbs/thread-$1"
+  },
+  {
+    "from": "^https://tidr.62augus-s.shop/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://gc95.play-9yh.com/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://7fx1.ryk18.com/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://oju7.njdatong.com/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://8n2a.143auror-f.shop/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://ts17.412augus-f.shop/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^http://sc7ap.yj9ld.top/read.php\\?tid=(.*)",
+    "mode": "regex",
+    "to": "https://hjd2048.com/2048/read.php?tid=$1"
+  },
+  {
+    "from": "^https://bbs.north-plus.net/(.*)",
+    "mode": "regex",
+    "to": "https://www.north-plus.net/$1"
+  },
+  {
+    "from": "^https://2048.wang/read.php\\?tid=(.*)",
+    "mode": "regex",
+    "to": "https://hjd2048.com/2048/read.php?tid=$1"
+  },
+  {
+    "from": "^http://wntrdu.www-link-qie.com/read.php\\?(.*)",
+    "mode": "regex",
+    "to": "http://hjd2048.com/2048/read.php?$1"
+  },
+  {
+    "from": "^https://south-plus.org/(.*)",
+    "mode": "regex",
+    "to": "https://www.north-plus.net/$1"
+  },
+  {
+    "from": "^https://bbs.imoutolove.me/(.*)",
+    "mode": "regex",
+    "to": "https://www.north-plus.net/$1"
+  },
+  {
+    "from": "^https://(www.)?hizhan520.com/(.*)",
+    "mode": "regex",
+    "to": "https://wk2088.com/$2"
+  },
+  {
+    "from": "^https://wys.sisurl.com/bbs\\d/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sis001.com/bbs/thread-$1"
+  },
+  {
+    "from": "^https://www.sis001.com/bbs\\d/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sis001.com/bbs/thread-$1"
+  },
+  {
+    "from": "^https://www.north-plus.net/read.php\\?tid-(.*)-keyword-.*",
+    "mode": "regex",
+    "to": "https://www.north-plus.net/read.php?tid-$1.html"
+  },
+  {
+    "from": "^https://north-plus.net/read.php\\?tid=(.*)",
+    "mode": "regex",
+    "to": "https://www.north-plus.net/read.php?tid-$1.html"
+  },
+  {
+    "from": "^https://fqim.ch5-pp.com/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://lhmw.4821carolin-wd.shop/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "https://6n7e.4821carolin-wd.shop/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://(www.)?(level|south)-plus.net/(.*)",
+    "mode": "regex",
+    "to": "https://www.north-plus.net/$3"
+  },
+  {
+    "from": "^https://www.sis001.(us)/(.*)",
+    "mode": "regex",
+    "to": "https://www.sis001.com/$2"
+  },
+  {
+    "from": "^https://www.south-plus.net/(.*)",
+    "mode": "regex",
+    "to": "https://www.north-plus.net/$1"
+  },
+  {
+    "from": "^https://www\\.north-plus\\.net/read\\.php\\?tid-(\\d+)-fpage-\\d+\\.html$",
+    "mode": "regex",
+    "to": "https://www.north-plus.net/read.php?tid-$1.html"
+  },
+  {
+    "from": "^https://www\\.north-plus\\.net/read\\.php\\?tid-(\\d+)-fpage-\\d+-toread--page-1\\.html$",
+    "mode": "regex",
+    "to": "https://www.north-plus.net/read.php?tid-$1.html"
+  },
+  {
+    "from": "^https://h4g7.elle48.com/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://0e5s.zhkywl.com/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://www.north-plus.net/read.php\\?tid=(.*)",
+    "mode": "regex",
+    "to": "https://www.north-plus.net/read.php?tid-$1.html"
+  },
+  {
+    "from": "^https://fdhf.wosgcnvfysfpe.cc/read.php\\?tid=(.*)",
+    "mode": "regex",
+    "to": "https://hjd2048.com/2048/read.php?tid=$1"
+  },
+  {
+    "from": "^https://cr7q.919ed8328b0d6f2b.com/read.php\\?tid=(.*)",
+    "mode": "regex",
+    "to": "https://hjd2048.com/2048/read.php?tid=$1"
+  },
+  {
+    "from": "^https://esal.6156phoeb-fa.cc/thread-(.*)",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1"
+  },
+  {
+    "from": "^https://out5.alma6874fe.cc/thread-(.*).html",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1.html"
+  },
+  {
+    "from": "^https://c2dwf.global-buyumaster.com/read.php\\?tid=(.*)",
+    "mode": "regex",
+    "to": "https://hjd2048.com/2048/read.php?tid=$1"
+  },
+  {
+    "from": "^https://.*.alma6874fe.cc/thread-(.*).html",
+    "mode": "regex",
+    "to": "https://www.sifangclub.com/thread-$1.html"
+  },
+  {
+    "from": "^https://bbs.level-plus.net/(.*)",
+    "mode": "regex",
+    "to": "https://www.north-plus.net/$1"
+  },
+  {
+    "from": "^https://www.north-plus.net/read\\.php\\?tid=(.*).html",
+    "mode": "regex",
+    "to": "https://www.north-plus.net/read.php?tid-$1.html"
+  },
+  {
+    "from": "^https://www\\.north-plus\\.net/simple/index\\.php\\?t(\\d+)(?:_\\d+)?\\.html$",
+    "mode": "regex",
+    "to": "https://www.north-plus.net/read.php?tid-$1.html"
+  },
+  {
+    "mode": "regex",
+    "from": "^https://www\\.sis001\\.com/forum/(.*)$",
+    "to": "https://www.sis001.com/bbs/$1"
+  },
+  {
+    "mode": "regex",
+    "from": "^https://sis001\\.com/bbs/(.*)$",
+    "to": "https://www.sis001.com/bbs/$1"
+  },
+  {
+    "mode": "regex",
+    "from": "^https://www\\.sis001\\.com/bbs/thread-([0-9]+)-1-(?!1\\.html(?:[?#]|$))[0-9]+\\.html([?#].*)?$",
+    "to": "https://www.sis001.com/bbs/thread-$1-1-1.html$2"
+  }
+]
