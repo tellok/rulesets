@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain_suffix": [
+        "openai.com",
+        "chatgpt.com",
+        "oaistatic.com",
+        "oaiusercontent.com",
+        "chatgpt.livekit.cloud",
+        "host.livekit.cloud",
+        "turn.livekit.cloud",
+        "anthropic.com",
+        "claude.ai",
+        "claude.com",
+        "claudeusercontent.com",
+        "clau.de",
+        "claudemcpclient.com",
+        "githubcopilot.com",
+        "copilot.microsoft.com",
+        "cursor.com",
+        "cursor.sh",
+        "cursorapi.com",
+        "cursor-cdn.com",
+        "cursorvm.com",
+        "perplexity.ai",
+        "openrouter.ai",
+        "grok.com",
+        "x.ai",
+        "huggingface.co",
+        "hf.co",
+        "hf.space"
+      ]
+    },
+    {
+      "domain": [
+        "chat.openai.com.cdn.cloudflare.net",
+        "openai-api.arkoselabs.com",
+        "openaicomproductionae4b.blob.core.windows.net",
+        "production-openaicom-storage.azureedge.net",
+        "anthropic.auth0.com",
+        "anthropic.com.cdn.cloudflare.net",
+        "servd-anthropic-website.b-cdn.net",
+        "gemini.google.com",
+        "aistudio.google.com",
+        "ai.google.dev",
+        "notebooklm.google.com",
+        "notebook.google",
+        "notebook.google.com",
+        "labs.google",
+        "generativelanguage.googleapis.com",
+        "cloudcode-pa.googleapis.com",
+        "cloudaicompanion.googleapis.com",
+        "oauth2.googleapis.com",
+        "serviceusage.googleapis.com",
+        "cloudresourcemanager.googleapis.com",
+        "firebaselogging-pa.googleapis.com",
+        "feedback-pa.googleapis.com",
+        "apihub.googleapis.com",
+        "copilot-proxy.githubusercontent.com",
+        "copilot-telemetry.githubusercontent.com",
+        "origin-tracker.githubusercontent.com",
+        "default.exp-tas.com"
+      ]
+    }
+  ]
+}
