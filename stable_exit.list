@@ -1,0 +1,6 @@
+# NAME: Stable_Exit
+# DESC: 用户指定的需稳定出口的网站，配合手动选择具体节点的 Stable_Exit 策略组。
+# 不能指向 SG/Final 等自动选路组；节点故障时由用户手动更换。
+# 以下网站有出口变化后登录失效的用户反馈，未据此断言其服务端实现。
+DOMAIN-SUFFIX,hilldisk.com
+DOMAIN-SUFFIX,ssdwp.com

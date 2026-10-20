@@ -51,3 +51,11 @@ sing-box 的 `route.rule_set` 示例：
 一天是客户端运行时的更新间隔，设备休眠/断网不保证准时更新；首次无缓存启动需要可访问 GitHub Raw。更新列表不更新节点，不修改客户端策略选择或既有连接。原始 `.list` 与生成 JSON 两次提交之间，以及 Raw CDN 传播时，可能短暂不同步；Actions 失败时 JSON 保持最后成功版本，修正源后重新运行。
 
 依据：[Surge Rule Sets](https://manual.nssurge.com/rules/ruleset.html)、[sing-box rule-set](https://sing-box.sagernet.org/configuration/rule-set/)、[GitHub 工作流触发规则](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow)。
+
+## 固定出口网站
+
+`stable_exit.list` 收纳用户指定的需稳定出口的网站，目前为 `hilldisk.com`、`ssdwp.com`（含子域）。这是用户反馈的会话稳定需求，不是对网站服务端认证机制的断言。Actions 自动生成 `sing-box/stable_exit.json`，客户端按一天间隔更新。
+
+搭配 `Stable_Exit` 手动选择组，候选只放具体代理节点，不能把 SG/Final/Proxies 等会自动换节点的组放进去。节点失效时保留选择，由用户手动换节点；这避免自动测速/故障切换改变出口，但不保证服务商不会调整同一节点的出口IP，也不保证Cookie永不过期。列表内网站共享一个固定节点；若将来需要每站不同出口，应拆为多个策略组。
+
+Surge：`RULE-SET,https://raw.githubusercontent.com/tellok/rulesets/main/stable_exit.list,Stable_Exit,update-interval=86400`。sing-box使用对应JSON远程规则集并路由到Stable_Exit，update_interval为1d。放在普通业务/CN/兜底规则之前；客户端的DNS、必要私网/iOA保护规则按原配置保留。切换或首次加载可能改变这两个站的出口，宜在选择好节点后重新登录。
