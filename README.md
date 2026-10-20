@@ -82,3 +82,11 @@ URL Pattern、动态流水线/模板和未支持的复杂正则必须显式另�
 验证：`python3 -m unittest discover -p 'test_*.py'`、`python3 scripts/generate_rewrites.py`。Actions同样执行生成并发布；rewrites文件变更触发工作流。
 
 依据：[Redirector文档与源码](https://github.com/rxliuli/redirector)、[Surge URL Rewrite](https://manual.nssurge.com/http/url-rewrite.html)、[Surge detached profile](https://manual.nssurge.com/profile/format.html)、[Surge MITM](https://manual.nssurge.com/http/mitm.html)、[sing-box rule actions](https://sing-box.sagernet.org/configuration/route/rule_action/)。
+
+## 远程直连清单
+
+`direct.list`初始收纳plex.tv、plex.bz、plex.direct及其子域，Actions按原生成器生成`sing-box/direct.json`。客户端通过jsDelivr的`https://cdn.jsdelivr.net/gh/tellok/rulesets@main/direct.list`（Surge）或`https://cdn.jsdelivr.net/gh/tellok/rulesets@main/sing-box/direct.json`（sing-box）每天更新。Surge命中指向内建DIRECT，sing-box命中指向已有direct；不创建另一个可切换的“Direct”代理组。
+
+目的：Plex公网地址探测/注册经代理时，会把代理出口公布给外部客户端；需要家庭WAN真实出口。配套adapter为同一规则集配置public真实DNS，避免继续进入FakeIP。保持Plex已有手动公网端口与入站映射，WAN地址不硬编码。若域名同时出现在其他业务清单，显式直连清单按客户端声明的较高优先级处理；其他清单顺序不改。
+
+这份清单当前只维护域名类规则，供流量路由及DNS共用；不是HTTP URL Rewrite，也不会把整个Tower设为直连。Plex.direct可能解析至私网，路由器原有DNS rebinding保护需要独立处理，本清单不会自动关闭它。客户端已有缓存时下载失败继续使用旧规则；首次加载仍需要可达源或initial_path。

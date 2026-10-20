@@ -1,0 +1,7 @@
+# 显式直连列表；客户端应路由到既有 DIRECT/direct，不创建可切换代理组。
+# Plex 地址探测、注册和通知需使用家庭真实出口，避免公布代理节点IP。
+# plex.direct 包含服务器安全直连与中继域名；私网地址仍按客户端原LAN规则处理。
+# 此列表也用于 sing-box 的真实 DNS 解析，当前只维护域名类规则。
+DOMAIN-SUFFIX,plex.tv
+DOMAIN-SUFFIX,plex.bz
+DOMAIN-SUFFIX,plex.direct
