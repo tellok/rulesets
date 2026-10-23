@@ -40,12 +40,12 @@ class RewriteTests(unittest.TestCase):
         text, module = render('cinder_f271', self.rules)
         self.assertEqual(SOURCE.with_name('cinder_f271.list').read_text(), text)
         self.assertEqual(SOURCE.with_name('cinder_f271.sgmodule').read_text(), module)
-        self.assertEqual(len(self.rules), 54)
+        self.assertEqual(len(self.rules), 55)
         self.assertIn('[URL Rewrite]', text)
         self.assertFalse((ROOT / 'sing-box/cinder_f271.json').exists())
 
     def test_exclude_preserves_group_number_and_case_insensitivity(self):
-        rule = self.rules[8]
+        rule = next(r for r in self.rules if r.get('exclude', '').startswith('^https://www.sis001.com/bbs/thread-'))
         self.assertIsNone(rewrite(rule, 'https://www.sis001.com/bbs/thread-12345-1-1.html'))
         self.assertEqual(rewrite(rule, 'HTTPS://WWW.SIS001.COM/bbs/thread-12345-2-1.html'),
                          'https://www.sis001.com/bbs/thread-12345-1-1.html')
@@ -63,6 +63,19 @@ class RewriteTests(unittest.TestCase):
             with self.subTest(start=start):
                 self.assertEqual(chain(self.rules, start), target)
                 self.assertEqual(chain(self.rules, target), target)
+
+    def test_sifang_first_page_normalization_and_no_redirect_loop(self):
+        for suffix in ('0', '2', '3', '25', '103'):
+            for query in ('', '?x=1&y=2'):
+                start = f'https://sifangclub.com/thread-465186-1-{suffix}.html{query}'
+                target = f'https://sifangclub.com/thread-465186-1-1.html{query}'
+                self.assertEqual(chain(self.rules, start), target)
+                self.assertEqual(chain(self.rules, target), target)
+        # 其他页保留原有的 www 跳转，非目标域名不受影响。
+        self.assertEqual(chain(self.rules, 'https://sifangclub.com/thread-465186-2-3.html'),
+                         'https://www.sifangclub.com/thread-465186-2-3.html')
+        self.assertEqual(chain(self.rules, 'https://sifangclub.com.evil.example/thread-465186-1-3.html'),
+                         'https://sifangclub.com.evil.example/thread-465186-1-3.html')
 
     def test_prefix_partial_match_drops_suffix_like_redirector(self):
         rule = {'mode':'regex', 'from':r'^https://example\.com/path', 'to':'https://target.example/'}

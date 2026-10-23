@@ -6,7 +6,8 @@
 (?i)^(?:https://xyof.zmmgu.com/thread-(.*))[\s\S]*$ https://www.sifangclub.com/thread-$1 302
 (?i)^(?:https://tgwc.ur25ed.com/read.php\?tid=(.*))[\s\S]*$ https://hjd2048.com/2048/read.php?tid=$1 302
 (?i)^(?:https://e.sis001.us/bbs2/thread-(.*))[\s\S]*$ https://www.sis001.com/bbs/thread-$1 302
-(?i)^(?:https://sifangclub.com/thread-(.*))[\s\S]*$ https://www.sifangclub.com/thread-$1 302
+(?i)^(?:https://sifangclub\.com/thread-([0-9]+)-1-(?!1\.html(?:[?#]|$))[0-9]+\.html([?#].*)?$)[\s\S]*$ https://sifangclub.com/thread-$1-1-1.html$2 302
+(?i)^(?!https://sifangclub\.com/thread-[0-9]+-1-1\.html(?:[?#].*)?$)(?:https://sifangclub.com/thread-(.*))[\s\S]*$ https://www.sifangclub.com/thread-$1 302
 (?i)^(?:https://dccy.44zacha-a.shop/thread-(.*))[\s\S]*$ https://www.sifangclub.com/thread-$1 302
 (?i)^(?:https://184f.64cocker-d.shop/thread-(.*))[\s\S]*$ https://www.sifangclub.com/thread-$1 302
 (?i)^(?!https://www.sis001.com/bbs/thread-(?:.*)-1-1.html)(?:https://www.sis001.com/bbs/thread-(.*)-\d-\d.html)[\s\S]*$ https://www.sis001.com/bbs/thread-$1-1-1.html 302
