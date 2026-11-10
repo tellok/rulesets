@@ -62,7 +62,7 @@ Surge：`RULE-SET,https://raw.githubusercontent.com/tellok/rulesets/main/stable_
 
 ## URL 重定向：cinder_f271
 
-`rewrites/cinder_f271.redirector.json` 是维护源，包含用户提供的51条Redirector规则及额外3条sis001、1条sifangclub规范化规则；不发布原始testUrl浏览记录。`scripts/generate_rewrites.py`生成 `rewrites/cinder_f271.list`（Surge detached profile的URL Rewrite段）与 `rewrites/cinder_f271.sgmodule`（附MITM hostname的独立模块）。名称随机生成，无业务含义。
+`rewrites/cinder_f271.redirector.json` 是维护源，包含用户提供的51条Redirector规则及额外3条sis001、1条sifangclub规范化规则及1条sifangclub镜像重定向规则；不发布原始testUrl浏览记录。`scripts/generate_rewrites.py`生成 `rewrites/cinder_f271.list`（Surge detached profile的URL Rewrite段）与 `rewrites/cinder_f271.sgmodule`（附MITM hostname的独立模块）。名称随机生成，无业务含义。
 
 .list的CDN地址为 `https://cdn.jsdelivr.net/gh/tellok/rulesets@main/rewrites/cinder_f271.list`。不能把它放入`RULE-SET`；Surge配置应加入：
 
@@ -73,11 +73,11 @@ Surge：`RULE-SET,https://raw.githubusercontent.com/tellok/rulesets/main/stable_
 
 片段以managed profile声明interval=86400；客户端运行时跟随远程更新，休眠/离线及CDN缓存不保证准点。源配置已有URL Rewrite行时，混合include要求Surge iOS5.22+/Mac6.9+；目前两份adapter产物该段只包含一个include。也可以安装.sgmodule，独立启停，不应与主配置同时重复启用。
 
-HTTPS需在Surge生成/安装并信任CA、打开MITM主开关。只添加45个源主机及明确的子域通配，不启用全站MITM、不更改证书或服务器证书验证。增加全新源域名后，还需同步adapter的mitm_hosts并重新转换/加载，或使用模块更新主机集合。证书与私钥不放进公开仓库。
+HTTPS需在Surge生成/安装并信任CA、打开MITM主开关。只添加46个源主机及明确的子域通配，不启用全站MITM、不更改证书或服务器证书验证。增加全新源域名后，还需同步adapter的mitm_hosts并重新转换/加载，或使用模块更新主机集合。证书与私钥不放进公开仓库。
 
-原扩展规则采用正则（忽略大小写）、编号捕获及单条exclude。译码不改捕获编号，exclude转为不捕获组的负向前瞻，消费URL未匹配后缀以保持原扩展“用目标模板替换整个URL”的语义。规则按原顺序，其后追加3条；最后一条排除已经是thread-…-1-1.html的URL，避免302自循环。源正则中原来未转义的点号等行为保留，不额外推测修改。每次请求执行一次302，链式规则可能需要多次请求；扩展原本会在设备内计算整条链。
+原扩展规则采用正则（忽略大小写）、编号捕获及单条exclude。译码不改捕获编号，exclude转为不捕获组的负向前瞻，消费URL未匹配后缀以保持原扩展“用目标模板替换整个URL”的语义。原有规则顺序保留，新增规则按需要插入或追加。规范化规则排除已经是thread-…-1-1.html的URL，避免302自循环。源正则中原来未转义的点号等行为保留，不额外推测修改。每次请求执行一次302，链式规则可能需要多次请求；扩展原本会在设备内计算整条链。
 
-URL Pattern、动态流水线/模板和未支持的复杂正则必须显式另行转换，生成器遇到它们会报错；不悄悄降级为域名分流。当前55条全部为受支持的正则模板。sing-box/OpenWrt没有HTTP URL Rewrite/MITM能力，不能生成等效rule-set JSON；浏览器可导入同源.redirector.json，或另行配置能解密HTTPS的重写代理。
+URL Pattern、动态流水线/模板和未支持的复杂正则必须显式另行转换，生成器遇到它们会报错；不悄悄降级为域名分流。当前56条全部为受支持的正则模板。sing-box/OpenWrt没有HTTP URL Rewrite/MITM能力，不能生成等效rule-set JSON；浏览器可导入同源.redirector.json，或另行配置能解密HTTPS的重写代理。
 
 验证：`python3 -m unittest discover -p 'test_*.py'`、`python3 scripts/generate_rewrites.py`。Actions同样执行生成并发布；rewrites文件变更触发工作流。
 

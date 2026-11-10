@@ -275,5 +275,10 @@
     "mode": "regex",
     "from": "^https://www\\.sis001\\.com/bbs/thread-([0-9]+)-1-(?!1\\.html(?:[?#]|$))[0-9]+\\.html([?#].*)?$",
     "to": "https://www.sis001.com/bbs/thread-$1-1-1.html$2"
+  },
+  {
+    "mode": "regex",
+    "from": "^https://h1lm\\.dupo44-d\\.shop/thread-(.*)$",
+    "to": "https://sifangclub.com/thread-$1"
   }
 ]

@@ -40,7 +40,7 @@ class RewriteTests(unittest.TestCase):
         text, module = render('cinder_f271', self.rules)
         self.assertEqual(SOURCE.with_name('cinder_f271.list').read_text(), text)
         self.assertEqual(SOURCE.with_name('cinder_f271.sgmodule').read_text(), module)
-        self.assertEqual(len(self.rules), 55)
+        self.assertEqual(len(self.rules), 56)
         self.assertIn('[URL Rewrite]', text)
         self.assertFalse((ROOT / 'sing-box/cinder_f271.json').exists())
 
@@ -77,6 +77,14 @@ class RewriteTests(unittest.TestCase):
         self.assertEqual(chain(self.rules, 'https://sifangclub.com.evil.example/thread-465186-1-3.html'),
                          'https://sifangclub.com.evil.example/thread-465186-1-3.html')
 
+    def test_sifang_mirror_preserves_thread_url(self):
+        start = 'https://h1lm.dupo44-d.shop/thread-467705-1-1.html'
+        target = 'https://sifangclub.com/thread-467705-1-1.html'
+        self.assertEqual(chain(self.rules, start), target)
+        self.assertEqual(chain(self.rules, start + '?x=1#reply'), target + '?x=1#reply')
+        unrelated = start.replace('dupo44-d.shop', 'dupo44-d.shop.example')
+        self.assertEqual(chain(self.rules, unrelated), unrelated)
+
     def test_prefix_partial_match_drops_suffix_like_redirector(self):
         rule = {'mode':'regex', 'from':r'^https://example\.com/path', 'to':'https://target.example/'}
         self.assertEqual(rewrite(rule, 'https://example.com/path?discard=1'), 'https://target.example/')
@@ -95,6 +103,7 @@ class RewriteTests(unittest.TestCase):
         self.assertIn('*.alma6874fe.cc', hosts)
         self.assertIn('www.level-plus.net', hosts)
         self.assertIn('sis001.com', hosts)
+        self.assertIn('h1lm.dupo44-d.shop', hosts)
         self.assertNotIn('sc7ap.yj9ld.top', hosts)  # HTTP无需解密
         self.assertNotIn('*', hosts)
 
