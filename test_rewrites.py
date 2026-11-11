@@ -40,7 +40,7 @@ class RewriteTests(unittest.TestCase):
         text, module = render('cinder_f271', self.rules)
         self.assertEqual(SOURCE.with_name('cinder_f271.list').read_text(), text)
         self.assertEqual(SOURCE.with_name('cinder_f271.sgmodule').read_text(), module)
-        self.assertEqual(len(self.rules), 56)
+        self.assertEqual(len(self.rules), 57)
         self.assertIn('[URL Rewrite]', text)
         self.assertFalse((ROOT / 'sing-box/cinder_f271.json').exists())
 
@@ -52,6 +52,8 @@ class RewriteTests(unittest.TestCase):
 
     def test_extra_rules_chains_query_and_canonical_idempotence(self):
         pairs = {
+            'https://ai.sis.la/bbs1/attachment.php?aid=4939020': 'https://www.sis001.com/bbs/attachment.php?aid=4939020',
+            'https://ai.sis.la/bbs10/attachment.php?aid=4939020': 'https://ai.sis.la/bbs10/attachment.php?aid=4939020',
             'https://www.sis001.com/forum/viewthread.php?tid=123&x=1': 'https://www.sis001.com/bbs/viewthread.php?tid=123&x=1',
             'https://sis001.com/bbs/viewthread.php?tid=123': 'https://www.sis001.com/bbs/viewthread.php?tid=123',
             'https://www.sis001.com/bbs/thread-123-1-25.html?x=1': 'https://www.sis001.com/bbs/thread-123-1-1.html?x=1',
@@ -103,6 +105,7 @@ class RewriteTests(unittest.TestCase):
         self.assertIn('*.alma6874fe.cc', hosts)
         self.assertIn('www.level-plus.net', hosts)
         self.assertIn('sis001.com', hosts)
+        self.assertIn('ai.sis.la', hosts)
         self.assertIn('h1lm.dupo44-d.shop', hosts)
         self.assertNotIn('sc7ap.yj9ld.top', hosts)  # HTTP无需解密
         self.assertNotIn('*', hosts)

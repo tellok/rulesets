@@ -280,5 +280,10 @@
     "mode": "regex",
     "from": "^https://h1lm\\.dupo44-d\\.shop/thread-(.*)$",
     "to": "https://sifangclub.com/thread-$1"
+  },
+  {
+    "mode": "regex",
+    "from": "^https://ai\\.sis\\.la/bbs1/(.*)$",
+    "to": "https://sis001.com/bbs/$1"
   }
 ]
